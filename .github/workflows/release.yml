@@ -77,11 +77,13 @@ jobs:
           npm install ${{ steps.get_package_name.outputs.PACKAGE_NAME }}@${{ steps.get_version.outputs.VERSION }}
           \`\`\`
           
-          ## Documentation
-          
-          See the [API Documentation](https://github.com/${{ github.repository }}/tree/${{ github.ref }}/generated/docs) for detailed usage information."
+          ## Documentation" 
+
+          See the [API Documentation](https://github.com/${{ github.repository }}/tree/${{ github.ref }}/generated/docs) for detailed usage information.
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        draft: false
+        prerelease: false
         
     - name: Upload documentation artifacts
       uses: actions/upload-artifact@v4
