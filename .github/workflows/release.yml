@@ -63,38 +63,36 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         
     - name: Create GitHub Release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ steps.get_version.outputs.VERSION }}
-        body: |
-          ## Changes in this Release
+      run: |
+        gh release create ${{ github.ref_name }} \
+          --title "Release ${{ steps.get_version.outputs.VERSION }}" \
+          --notes "## Changes in this Release
           
           - Generated API client version ${{ steps.get_version.outputs.VERSION }}
           - Updated from OpenAPI specification
           
           ## Installation
           
-          ```bash
+          \`\`\`bash
           npm install ${{ steps.get_package_name.outputs.PACKAGE_NAME }}@${{ steps.get_version.outputs.VERSION }}
-          ```
+          \`\`\`
           
-          ## Documentation
+          ## Documentation"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
           See the [API Documentation](https://github.com/${{ github.repository }}/tree/${{ github.ref }}/generated/docs) for detailed usage information.
         draft: false
         prerelease: false
         
     - name: Upload documentation artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: api-documentation
         path: generated/docs/
         
     - name: Upload client artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: api-client
         path: generated/client/dist/
