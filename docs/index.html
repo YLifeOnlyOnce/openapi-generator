@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #e1e5e9;
+        }
+        .header h1 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+        .section {
+            margin-bottom: 2rem;
+        }
+        .section h2 {
+            color: #34495e;
+            border-left: 4px solid #3498db;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+        .link-card {
+            display: block;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #495057;
+            transition: all 0.2s ease;
+        }
+        .link-card:hover {
+            background: #e9ecef;
+            border-color: #3498db;
+            transform: translateY(-1px);
+        }
+        .link-card h3 {
+            margin: 0 0 0.5rem 0;
+            color: #2c3e50;
+        }
+        .link-card p {
+            margin: 0;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            background: #3498db;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+        .code {
+            background: #f1f3f4;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+        }
+        .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e1e5e9;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 API Documentation</h1>
+        <p>自动生成的 API 文档和客户端库</p>
+    </div>
+
+    <div class="section">
+        <h2>📖 API 文档</h2>
+        <a href="./api-docs/latest/" class="link-card">
+            <h3>最新版本文档 <span class="badge">推荐</span></h3>
+            <p>查看最新版本的 API 文档，包含所有最新的接口和功能</p>
+        </a>
+        
+        <div id="version-docs">
+            <!-- 版本化文档链接将通过 JavaScript 动态加载 -->
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📦 客户端安装</h2>
+        <p>使用 npm 安装生成的 API 客户端：</p>
+        <div style="background: #2c3e50; color: #ecf0f1; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+            <code>npm install @yaoyaoyu/og-example-api-client</code>
+        </div>
+        
+        <p>或安装特定版本：</p>
+        <div style="background: #2c3e50; color: #ecf0f1; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+            <code>npm install @yaoyaoyu/og-example-api-client@1.0.8</code>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🔗 相关链接</h2>
+        <a href="https://github.com/yaoyaoyu/og-example-api-client" class="link-card">
+            <h3>GitHub 仓库</h3>
+            <p>查看源代码、提交问题和贡献代码</p>
+        </a>
+        
+        <a href="https://www.npmjs.com/package/@yaoyaoyu/og-example-api-client" class="link-card">
+            <h3>NPM 包</h3>
+            <p>查看包信息、下载统计和版本历史</p>
+        </a>
+    </div>
+
+    <div class="footer">
+        <p>📅 文档自动更新于每次发布 | 🤖 由 OpenAPI Generator 生成</p>
+    </div>
+
+    <script>
+        // 动态加载版本化文档链接
+        async function loadVersionDocs() {
+            try {
+                // 这里可以通过 GitHub API 获取所有版本
+                // 暂时显示一些示例版本
+                const versions = ['1.0.8', '1.0.7', '1.0.6'];
+                const container = document.getElementById('version-docs');
+                
+                versions.forEach(version => {
+                    const link = document.createElement('a');
+                    link.href = `./api-docs/${version}/`;
+                    link.className = 'link-card';
+                    link.innerHTML = `
+                        <h3>版本 ${version}</h3>
+                        <p>查看版本 ${version} 的 API 文档</p>
+                    `;
+                    container.appendChild(link);
+                });
+            } catch (error) {
+                console.log('无法加载版本信息:', error);
+            }
+        }
+
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', loadVersionDocs);
+    </script>
+</body>
+</html>

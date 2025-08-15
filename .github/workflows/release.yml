@@ -82,7 +82,11 @@ jobs:
           
           ## Documentation
           
-          See the [API Documentation](https://github.com/${{ github.repository }}/tree/${{ github.ref }}/generated/docs) for detailed usage information."
+          📖 **API Documentation**: 
+          - [Latest Version](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/api-docs/latest/)
+          - [Version ${{ steps.get_version.outputs.VERSION }}](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/api-docs/${{ steps.get_version.outputs.VERSION }}/)
+          
+          The HTML documentation is automatically generated and deployed to GitHub Pages for easy viewing."
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
@@ -91,9 +95,27 @@ jobs:
       with:
         name: api-documentation
         path: generated/docs/
+        retention-days: 90  # 保留90天
         
     - name: Upload client artifacts
       uses: actions/upload-artifact@v4
       with:
         name: api-client
         path: generated/client/dist/
+        retention-days: 30  # 保留30天
+        
+    - name: Deploy API Documentation to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./generated/docs
+        destination_dir: api-docs/${{ steps.get_version.outputs.VERSION }}
+        keep_files: true  # 保留之前版本的文档
+        
+    - name: Deploy Latest API Documentation
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./generated/docs
+        destination_dir: api-docs/latest
+        keep_files: true
