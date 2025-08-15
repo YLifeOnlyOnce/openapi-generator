@@ -1,0 +1,58 @@
+# Jekyll configuration for GitHub Pages
+title: "API Documentation"
+description: "自动生成的 API 文档和客户端库"
+baseurl: ""
+url: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Exclude from processing
+exclude:
+  - .github/
+  - scripts/
+  - generated/
+  - spec/
+  - templates/
+  - node_modules/
+  - package*.json
+  - "*.sh"
+  - Gemfile*
+  - README.md
+
+# Include files
+include:
+  - docs/
+  - api-docs/
+
+# Collections
+collections:
+  api_versions:
+    output: true
+    permalink: /api-docs/:name/
+
+# Default layouts
+defaults:
+  - scope:
+      path: "docs"
+    values:
+      layout: "default"
+  - scope:
+      path: "api-docs"
+    values:
+      layout: "default"
+
+# GitHub Pages specific settings
+safe: true
+lsi: false
+incremental: false
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
