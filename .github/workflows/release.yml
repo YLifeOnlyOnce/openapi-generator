@@ -61,8 +61,7 @@ jobs:
         npm publish --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        
-    - name: Create GitHub Release
+        - name: Create GitHub Release
       run: |
         gh release create ${{ github.ref_name }} \
           --title "Release ${{ steps.get_version.outputs.VERSION }}" \
@@ -77,13 +76,11 @@ jobs:
           npm install ${{ steps.get_package_name.outputs.PACKAGE_NAME }}@${{ steps.get_version.outputs.VERSION }}
           \`\`\`
           
-          ## Documentation"
+          ## Documentation
+          
+          See the [API Documentation](https://github.com/${{ github.repository }}/tree/${{ github.ref }}/generated/docs) for detailed usage information."
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
-          See the [API Documentation](https://github.com/${{ github.repository }}/tree/${{ github.ref }}/generated/docs) for detailed usage information.
-        draft: false
-        prerelease: false
         
     - name: Upload documentation artifacts
       uses: actions/upload-artifact@v4
