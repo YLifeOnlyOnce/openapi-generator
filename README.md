@@ -49,6 +49,28 @@ nvm use 20
 - **API 客户端**: `generated/client/`
 - **API 文档**: `generated/docs/index.html`
 
+## 📖 API 文档
+
+### 在线文档
+
+每次发布新版本时，API 文档会自动部署到 GitHub Pages，用户可以通过以下链接在线查看：
+
+- **📚 文档主页**: `https://{username}.github.io/{repository-name}/`
+- **🔄 最新版本**: `https://{username}.github.io/{repository-name}/api-docs/latest/`
+- **📋 特定版本**: `https://{username}.github.io/{repository-name}/api-docs/{version}/`
+
+### 本地文档
+
+生成的 HTML 文档位于 `generated/docs/` 目录，可以直接在浏览器中打开查看。
+
+### 文档特性
+
+- ✅ **自动生成**: 基于 OpenAPI 规范自动生成
+- ✅ **版本管理**: 每个版本的文档都会被保留
+- ✅ **在线访问**: 通过 GitHub Pages 提供在线访问
+- ✅ **响应式设计**: 支持桌面和移动设备
+- ✅ **交互式**: 支持 API 测试和示例代码
+
 ## 发布流程
 
 ### 自动发布（推荐）
@@ -143,6 +165,23 @@ const users = await client.users.getUsers();
 
 - `NPM_TOKEN`: npm 发布令牌
 - `GITHUB_TOKEN`: GitHub 访问令牌（自动提供）
+
+### GitHub Pages 设置
+
+为了启用 API 文档的在线访问，需要配置 GitHub Pages：
+
+1. **启用 GitHub Pages**:
+   - 进入仓库设置 → Pages
+   - Source 选择 "GitHub Actions"
+   - 保存设置
+
+2. **配置权限**:
+   - 进入仓库设置 → Actions → General
+   - Workflow permissions 选择 "Read and write permissions"
+   - 勾选 "Allow GitHub Actions to create and approve pull requests"
+   - 保存设置
+
+配置完成后，每次发布新版本时，API 文档会自动部署到 GitHub Pages。
 
 ### 获取 NPM Token
 
