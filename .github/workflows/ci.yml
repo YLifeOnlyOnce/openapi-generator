@@ -24,7 +24,7 @@ jobs:
       
     - name: Validate OpenAPI spec
       run: |
-        npx @apidevtools/swagger-parser validate spec/example-api.yaml
+        npx @apidevtools/swagger-cli validate spec/example-api.yaml
         
     - name: Generate API client and docs
       run: |
