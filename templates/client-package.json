@@ -1,0 +1,46 @@
+{
+  "name": "@test/example-api-client",
+  "version": "1.0.0",
+  "description": "TypeScript Axios client for Example API",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "client",
+    "typescript",
+    "axios",
+    "openapi"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  },
+  "peerDependencies": {
+    "axios": ">=0.27.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/example-api-client.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/example-api-client/issues"
+  },
+  "homepage": "https://github.com/your-username/example-api-client#readme"
+}

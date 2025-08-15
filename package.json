@@ -1,0 +1,30 @@
+{
+  "name": "example-api-generator",
+  "version": "1.0.0",
+  "description": "OpenAPI Generator project for Example API",
+  "main": "index.js",
+  "scripts": {
+    "generate": "npm run generate:client && npm run generate:docs",
+    "generate:client": "openapi-generator-cli generate -i spec/example-api.yaml -g typescript-axios -o generated/client --additional-properties=npmName=example-api-client,npmVersion=$npm_package_version,supportsES6=true,withInterfaces=true,useSingleRequestParameter=true",
+    "generate:docs": "openapi-generator-cli generate -i spec/example-api.yaml -g html2 -o generated/docs",
+    "build": "npm run generate && cd generated/client && npm install && npm run build",
+    "prepare-publish": "npm run build && cd generated/client && npm pack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "openapi",
+    "api",
+    "client",
+    "generator",
+    "typescript",
+    "axios"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.7.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
